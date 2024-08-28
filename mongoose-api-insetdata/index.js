@@ -1,0 +1,10 @@
+require("./db/config")
+require("dotenv").config()
+const express = require("express")
+const inserdata = require("./controllers/inserdata")
+const uploadfile = require("./middilweres/fileupload")
+const app = express()
+app.post("/", uploadfile, inserdata)
+app.listen(process.env.port, "127.0.0.1", ()=> {
+    console.log(`"server is running ${process.env.port}`)
+})
