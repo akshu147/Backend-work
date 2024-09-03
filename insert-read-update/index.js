@@ -1,0 +1,18 @@
+require("./db/config")
+require("dotenv").config()
+const express = require("express")
+const { inserdata } = require("./controllers/insertdata")
+const { uploadfile } = require("./middilweres/uploadfiles")
+const { readdata } = require("./controllers/readdata")
+const path = require("path")
+const { deletedata } = require("./controllers/deletedata")
+const { updatedata } = require("./controllers/update")
+const app = express()
+app.use('/uploads' ,express.static('uploads'));
+app.post("/", uploadfile,inserdata)
+app.get("/read-data", readdata)
+app.delete("/delete/:_id?", deletedata)
+app.put("/update/:id?", uploadfile ,updatedata)
+app.listen(process.env._port, "127.0.0.1", ()=> {
+    console.log("Server started")
+})
