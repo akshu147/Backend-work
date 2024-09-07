@@ -1,0 +1,12 @@
+require("./src/db/config")
+require("dotenv").config()
+const epxress = require("express")
+const { allrouted } = require("./src/app")
+const { ragisteradmin } = require("./src/controllers/admin/admincontroler")
+const app = epxress()
+app.use(epxress.json())
+app.use(allrouted)
+ragisteradmin()
+app.listen(process.env_port, ()=> {
+    console.log("server is cunning")
+})
